@@ -1,5 +1,5 @@
 /*
- * Copyright 2012-2018 the original author or authors.
+ * Copyright 2012-2019 the original author or authors.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,6 +16,7 @@
 
 package io.spring.initializr.web.autoconfigure;
 
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -28,6 +29,10 @@ import io.spring.initializr.generator.ProjectGenerator;
 import io.spring.initializr.generator.ProjectRequestPostProcessor;
 import io.spring.initializr.generator.ProjectRequestResolver;
 import io.spring.initializr.generator.ProjectResourceLocator;
+import io.spring.initializr.generator.io.IndentingWriterFactory;
+import io.spring.initializr.generator.io.SimpleIndentStrategy;
+import io.spring.initializr.generator.project.ProjectDirectoryFactory;
+import io.spring.initializr.generator.spike.ProjectGeneratorInvoker;
 import io.spring.initializr.metadata.DependencyMetadataProvider;
 import io.spring.initializr.metadata.InitializrMetadata;
 import io.spring.initializr.metadata.InitializrMetadataBuilder;
@@ -50,6 +55,7 @@ import org.springframework.boot.autoconfigure.web.client.RestTemplateAutoConfigu
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.context.properties.bind.Binder;
 import org.springframework.boot.web.client.RestTemplateBuilder;
+import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
@@ -84,6 +90,27 @@ public class InitializrAutoConfiguration {
 	public ProjectGenerator projectGenerator() {
 		return new ProjectGenerator();
 	}
+
+	// Bridge to new API
+	@Bean
+	@ConditionalOnMissingBean
+	public ProjectGeneratorInvoker projectGeneratorInvoker(
+			ApplicationContext applicationContext) {
+		return new ProjectGeneratorInvoker(applicationContext);
+	}
+
+	@Bean
+	@ConditionalOnMissingBean
+	public ProjectDirectoryFactory projectDirectoryFactory() {
+		return (description) -> Files.createTempDirectory("project-");
+	}
+
+	@Bean
+	@ConditionalOnMissingBean
+	public IndentingWriterFactory indentingWriterFactory() {
+		return IndentingWriterFactory.create(new SimpleIndentStrategy("\t"));
+	}
+	// End of bridge to new API
 
 	@Bean
 	@ConditionalOnMissingBean
@@ -172,6 +199,7 @@ public class InitializrAutoConfiguration {
 								CreatedExpiryPolicy.factoryOf(Duration.TEN_MINUTES)));
 				cacheManager.createCache("initializr.dependency-metadata", config());
 				cacheManager.createCache("initializr.project-resources", config());
+				cacheManager.createCache("initializr.templates", config());
 			};
 		}
 

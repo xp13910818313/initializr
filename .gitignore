@@ -12,7 +12,6 @@
 .factorypath
 *.iml
 bin
-build
 target
 .springBeans
 .vscode/
