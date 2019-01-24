@@ -16,13 +16,13 @@
 
 package io.spring.initializr.generator.spike;
 
-import io.spring.initializr.generator.ResolvedProjectDescription;
 import io.spring.initializr.generator.buildsystem.Build;
 import io.spring.initializr.generator.buildsystem.gradle.ConditionalOnGradle;
 import io.spring.initializr.generator.buildsystem.maven.ConditionalOnMaven;
 import io.spring.initializr.generator.language.kotlin.ConditionalOnKotlinLanguage;
 import io.spring.initializr.generator.packaging.war.ConditionalOnWarPackaging;
 import io.spring.initializr.generator.project.ProjectGenerationConfiguration;
+import io.spring.initializr.generator.project.ResolvedProjectDescription;
 import io.spring.initializr.generator.project.code.kotlin.KotlinProjectSettings;
 import io.spring.initializr.generator.spike.build.DependencyManagementBuildCustomizer;
 import io.spring.initializr.generator.spike.build.InitializrDefaultStarterBuildCustomizer;

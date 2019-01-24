@@ -16,9 +16,9 @@
 
 package io.spring.initializr.generator.spike.build;
 
-import io.spring.initializr.generator.ResolvedProjectDescription;
 import io.spring.initializr.generator.buildsystem.BillOfMaterials;
 import io.spring.initializr.generator.buildsystem.maven.MavenBuild;
+import io.spring.initializr.generator.project.ResolvedProjectDescription;
 import io.spring.initializr.generator.project.build.BuildCustomizer;
 import io.spring.initializr.generator.spike.ConceptTranslator;
 import io.spring.initializr.metadata.InitializrConfiguration.Env.Maven;

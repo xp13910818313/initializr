@@ -16,7 +16,7 @@
 
 package io.spring.initializr.generator.spike.documentation;
 
-import io.spring.initializr.generator.ResolvedProjectDescription;
+import io.spring.initializr.generator.project.ResolvedProjectDescription;
 import io.spring.initializr.generator.project.documentation.GettingStartedSection;
 import io.spring.initializr.generator.project.documentation.HelpDocument;
 import io.spring.initializr.generator.project.documentation.HelpDocumentCustomizer;

@@ -16,8 +16,8 @@
 
 package io.spring.initializr.generator.spike;
 
-import io.spring.initializr.generator.ProjectDescription;
 import io.spring.initializr.generator.io.template.MustacheTemplateRenderer;
+import io.spring.initializr.generator.project.ProjectDescription;
 import io.spring.initializr.generator.project.documentation.HelpDocument;
 import io.spring.initializr.generator.spike.documentation.InitializrMetadataHelpDocumentCustomizer;
 import io.spring.initializr.generator.util.Version;

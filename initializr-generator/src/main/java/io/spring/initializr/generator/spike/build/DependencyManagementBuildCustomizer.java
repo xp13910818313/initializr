@@ -21,8 +21,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.stream.Stream;
 
-import io.spring.initializr.generator.ResolvedProjectDescription;
 import io.spring.initializr.generator.buildsystem.Build;
+import io.spring.initializr.generator.project.ResolvedProjectDescription;
 import io.spring.initializr.generator.project.build.BuildCustomizer;
 import io.spring.initializr.generator.spike.ConceptTranslator;
 import io.spring.initializr.metadata.BillOfMaterials;
